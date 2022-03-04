@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="auth_oauth_github_provider_form_view" model="ir.ui.view">
+        <field name="name">auth.oauth.github.provider.form.view</field>
+        <field name="model">auth.oauth.provider</field>
+        <field name="inherit_id" ref="auth_oauth.view_oauth_provider_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name = 'client_id']" position="after">
+                <field name="github_client_secret" attrs="{'invisible': [('is_oauth_github', '!=', True)], 'required': [('is_oauth_github', '=', True)]}"/>
+                <field name="oauth_github_user_type" attrs="{'invisible': [('is_oauth_github', '!=', True)]}" widget="radio" options="{'horizontal':True}"/>
+                <field name="is_oauth_github" invisible="1"/>
+            </xpath>
+        </field>
+    </record>
+</odoo>
