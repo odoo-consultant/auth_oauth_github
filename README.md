@@ -1,5 +1,5 @@
 Odoo Github Authentication
-===================
+====================
 
 Integrate Github Authenticator with Odoo.  
 
