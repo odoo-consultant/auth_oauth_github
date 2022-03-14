@@ -151,7 +151,7 @@ class OAuthGithubController(OAuthController):
         if post.get('state'):
             provider = request.env['auth.oauth.provider'].sudo().browse(json.loads(post.get('state')).get('p'))
         else:
-            provider = request.env.ref('ks_github_auth_oauth.provider_github')
+            provider = request.env.ref('auth_oauth_github.provider_github')
             provider = request.env[provider._name].sudo().browse(provider.id)
 
         client_id = provider.client_id
