@@ -104,9 +104,12 @@ class OAuthGithubController(OAuthController):
                 env = api.Environment(cr, SUPERUSER_ID, context)
                 validation = {
                     'user_id': user_data.get('github_id'),
-                    'email': user_data.get('email') or user_data.get('username'),
+                    # 'email': user_data.get('email') or user_data.get('username'),
                     'name': user_data.get('github_name') or user_data.get("username"),
                 }
+                if user_data.get('email'):
+                    validation.update({'email': user_data.get('email')})
+
                 login = env['res.users'].sudo()._auth_oauth_signin(provider, validation, kw)
                 # save avatar
                 if avatar_base64:
